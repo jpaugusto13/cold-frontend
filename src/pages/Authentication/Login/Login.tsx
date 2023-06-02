@@ -20,11 +20,10 @@ export function Login() {
 
   const navigate = useNavigate();
 
-  const onSubmit = async () => {
+  const onSubmit = async (data: FormData) => {
     api
-      .get('/teste')
+      .post('Auth/login', data)
       .then(({ data }) => {
-        console.log(data);
         localStorage.setItem('token@COLD', data.token);
       })
       .then(() => navigate('/'));
