@@ -23,11 +23,12 @@ export function Register() {
 
   const onSubmit = async (data: FormData) => {
     try {
-      await api.post('/Auth/register', data).then(() => {
+      await api.post('/Auth/register', data).then(({ data }) => {
+        alert(data.mensge);
         navigate('/entrar');
       });
     } catch (e) {
-      alert('Usuário já cadastrado!');
+      alert(e);
     }
   };
 
