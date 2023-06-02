@@ -17,9 +17,10 @@ export function Double({ name, money, isLogged }: DoubleProps) {
   function handleColor(buttonID: number, color: string) {
     setSelectButton(buttonID);
     setSelectedColor(color);
+    if (selectedColor && value) {
+      return 0;
+    }
   }
-
-  console.log(selectedColor,value)
 
   function handleGame() {
     if (!isLogged) {
