@@ -23,12 +23,12 @@ export function Register() {
 
   const onSubmit = async (data: FormData) => {
     try {
-      await api.post('/Auth/register', data).then(({ data }) => {
-        alert(data.mensge);
+      await api.post('/Auth/register', data).then(() => {
+        alert('Usuário cadastrado com sucesso');
         navigate('/entrar');
       });
     } catch (e) {
-      alert(e);
+      alert('Esse email de usuário já está cadastradp');
     }
   };
 

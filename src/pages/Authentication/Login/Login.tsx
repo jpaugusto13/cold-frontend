@@ -24,6 +24,7 @@ export function Login() {
     api
       .post('Auth/login', data)
       .then(({ data }) => {
+        alert('Usuário logado com sucesso!');
         localStorage.setItem('token@COLD', data.token);
       })
       .then(() => navigate('/'));
