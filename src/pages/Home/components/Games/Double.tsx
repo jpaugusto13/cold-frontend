@@ -2,28 +2,26 @@ import { useState } from 'react';
 import { Table } from './components/Table/Table';
 
 import './double.scss';
+import { useAuth } from '../../../../hooks/useAuth';
 
-interface DoubleProps {
-  name: string;
-  money: number;
-  isLogged: boolean;
-}
-
-export function Double({ name, money, isLogged }: DoubleProps) {
+export function Double() {
+  const { user, isLoggedIn } = useAuth();
   const [selectButton, setSelectButton] = useState(0);
   const [selectedColor, setSelectedColor] = useState('');
   const [value, setValue] = useState(0);
 
+  const { name, money } = user;
   function handleColor(buttonID: number, color: string) {
     setSelectButton(buttonID);
     setSelectedColor(color);
+    console.log(user.money)
     if (selectedColor && value) {
       return 0;
     }
   }
 
   function handleGame() {
-    if (!isLogged) {
+    if (!isLoggedIn) {
       alert('Para jogar você precisa estar cadastrado');
     } else {
       alert('Jogo em manutenção');
@@ -31,11 +29,11 @@ export function Double({ name, money, isLogged }: DoubleProps) {
   }
 
   return (
-    <>
+    <section id="double">
       <h3>
-        Usuário: {name} , Saldo: R$ {money.toFixed(2).replace('.', ',')}
+        Usuário: {name} , Saldo: R$ {Number(money).toFixed(2).replace('.', ',')}
       </h3>
-      <section id="double">
+      <div className="dashboard">
         <aside>
           <form>
             <div>
@@ -81,13 +79,13 @@ export function Double({ name, money, isLogged }: DoubleProps) {
           </form>
         </aside>
         <canvas></canvas>
-      </section>
+      </div>
 
       <section className="tables">
         <Table filter="vermelho" multiplier={2} />
         <Table filter="branco" multiplier={12} />
         <Table filter="preto" multiplier={4} />
       </section>
-    </>
+    </section>
   );
 }

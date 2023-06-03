@@ -6,7 +6,7 @@ import * as yup from 'yup';
 
 import api from '../../../services/api';
 import schema from './components/schema';
-import { Input } from '../../../components/Input/Input';
+import { Input } from '../../../shared/components/Input/Input';
 
 type FormData = yup.InferType<typeof schema>;
 

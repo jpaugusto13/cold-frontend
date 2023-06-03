@@ -3,13 +3,14 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
-import api from '../../../services/api';
 import schema from './components/schema';
-import { Input } from '../../../components/Input/Input';
-import { useNavigate } from 'react-router-dom';
+import { Input } from '../../../shared/components/Input/Input';
+import { useAuth } from '../../../hooks/useAuth';
 
 type FormData = yup.InferType<typeof schema>;
+
 export function Login() {
+  const { signIn } = useAuth();
   const {
     register,
     handleSubmit,
@@ -18,16 +19,8 @@ export function Login() {
     resolver: yupResolver(schema),
   });
 
-  const navigate = useNavigate();
-
-  const onSubmit = async (data: FormData) => {
-    api
-      .post('Auth/login', data)
-      .then(({ data }) => {
-        alert('Usuário logado com sucesso!');
-        localStorage.setItem('token@COLD', data.token);
-      })
-      .then(() => navigate('/'));
+  const onSubmit = (data: FormData) => {
+    signIn(data);
   };
 
   return (

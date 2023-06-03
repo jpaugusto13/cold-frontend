@@ -1,51 +1,15 @@
-import { Link } from 'react-router-dom';
-import { Double } from '../../components/Games/Double/Double';
-import { useState, useEffect } from 'react';
+import { Link, Outlet } from 'react-router-dom';
 
-import api from '../../services/api';
+import './home.scss';
+
+import { useAuth } from '../../hooks/useAuth';
 
 export function Home() {
-  const [isLogged, setIsLogged] = useState(false);
-  const [name, setName] = useState('Não logado');
-  const [money, setMoney] = useState(0);
-
-  const key = 'token@COLD';
-
-  useEffect(() => {
-    const changeName = async () => {
-      const token = localStorage.getItem(key);
-      if (token) {
-        try {
-          api
-            .get('/user', {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            })
-            .then(({ data }) => {
-              setName(data.name);
-              setMoney(data.money);
-              setIsLogged(true);
-            });
-        } catch (e) {
-          console.log(e);
-        }
-      }
-    };
-
-    changeName();
-  }, []);
-
-  function handleLogoff() {
-    localStorage.removeItem(key);
-    setIsLogged(false);
-    setName('Não logado');
-    setMoney(0);
-  }
+  const { isLoggedIn, logout } = useAuth();
 
   return (
     <>
-      {!isLogged ? (
+      {!isLoggedIn ? (
         <div>
           <p>
             <Link to="/entrar">entrar</Link> /{' '}
@@ -53,12 +17,23 @@ export function Home() {
           </p>
         </div>
       ) : (
-        <button onClick={handleLogoff}>sair</button>
+        <button onClick={logout}>sair</button>
       )}
-      <title>Double | Cold</title>
-      <h1>Double</h1>
+      <title>Home | Cold</title>
+
       <main>
-        <Double name={name} money={money} isLogged={isLogged} />
+        <aside className="aside-home">
+          <h2>Games</h2>
+          <ul>
+            <li>
+              <Link to="">Home</Link>
+            </li>
+            <li>
+              <Link to="double">Double</Link>
+            </li>
+          </ul>
+        </aside>
+        <Outlet />
       </main>
     </>
   );
