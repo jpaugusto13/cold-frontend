@@ -7,17 +7,17 @@ export function Table({ filter, multiplier }: TableProps) {
   const amount = Number(0);
   return (
     <div>
-      <table border={2}>
+      <table>
         <thead>
           <tr>
-            <td>Vitória {multiplier}x</td>
+            <td><h1>Vitória {multiplier}x</h1></td>
             <th>
               <img alt="icon" src={`/svg/games/double/${filter}Card.svg`} />
             </th>
           </tr>
           <tr>
             <td>Total de apostas</td>
-            <td>R$ {amount.toFixed(2).replace('.', ',')}</td>
+            <td><h1>R$ {amount.toFixed(2).replace('.', ',')}</h1></td>
           </tr>
           <tr>
             <td>Usuário</td>

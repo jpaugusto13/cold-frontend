@@ -1,19 +1,15 @@
 import { Outlet } from 'react-router-dom';
-
-import { SidebarTeste } from '../../shared/components/Sidebar/Sidebar';
 import { NavBar } from '../../shared/components/Navigation/Navbar';
-import './home.scss';
+import "./authentication.scss"
 
-export function Home() {
+export function Authentication() {
   return (
     <>
       <header>
-        <NavBar />
+        <NavBar/>
       </header>
-      <title>Home | Cold</title>
 
       <main>
-        <SidebarTeste />
         <Outlet />
       </main>
     </>

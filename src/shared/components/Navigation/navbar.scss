@@ -1,0 +1,47 @@
+.navbar {
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #172635;
+  border-bottom: 1px solid #3e4246;
+  height: 12vh;
+  
+  .logo {
+    margin-left: 50px;
+    width: 120px;
+  }
+
+  div {
+    display: flex;
+    gap: 12px;
+
+    a,
+    p,
+    button {
+      padding: 12px;
+      font-size: 16px;
+      border: 0;
+      border-radius: 5px;
+    }
+
+    .sign-in {
+      color: white;
+    }
+    .sign-up,
+    .logout {
+      background-color: #f12c4c;
+      color: white;
+      width: 80px;
+    }
+    .sign-up {
+      width: auto;
+    }
+    .money {
+      color: white;
+      font-weight: bold;
+      font-size: 14px;
+      border: 1px solid #3e4246;
+    }
+  }
+}

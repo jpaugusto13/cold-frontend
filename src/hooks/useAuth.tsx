@@ -4,10 +4,11 @@ import { AuthContext } from '../contexts/AuthContext';
 export function useAuth() {
   const context = useContext(AuthContext);
 
-  const { signIn, logout, isLoggedIn, user } = context;
+  const { signIn, signUp, logout, isLoggedIn, user } = context;
 
   return {
     signIn,
+    signUp,
     logout,
     user,
     isLoggedIn,

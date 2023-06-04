@@ -4,14 +4,13 @@ import { InputHTMLAttributes, forwardRef } from 'react';
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   errors?: FieldError;
   label?: string;
-  className?: string;
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ className, errors, label, ...rest }, ref) => {
+  ({ errors, label, ...rest }, ref) => {
     const htmlFor = label?.toLowerCase().replace(' ', '');
     return (
-      <div className={className && className}>
+      <div className="content-field">
         {label && (
           <label htmlFor={htmlFor}>
             {label}
@@ -19,7 +18,14 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           </label>
         )}
         <input id={`${htmlFor}`} {...rest} ref={ref} />
-        {errors && <p>{errors.message}</p>}
+        <div
+          style={
+            !errors ? { height: '0px' } : {}
+          }
+          className={errors ? 'content-field-error' : ''}
+        >
+          {errors && <p>{errors.message}</p>}
+        </div>
       </div>
     );
   }

@@ -2,26 +2,56 @@
   padding: 10px;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  width: 100%;
   gap: 10px;
+  overflow-y: auto;
+
+  section {
+    background-color: #1a242d;
+    padding: 30px;
+    border-radius: 5px;
+  }
 
   .dashboard {
     display: flex;
     gap: 10px;
 
     form {
-      button {
-        .select {
-          box-shadow: 0px 0px 10px black;
+      .btn {
+        display: flex;
+        gap: 10px;
+
+        button {
+          padding: 12px;
+          font-size: 14px;
+          width: 80px;
+          border: 0;
+          border-radius: 5px;
+        }
+
+        .red {
+          background-color: #f12c4c;
+          color: white;
+        }
+        .white {
+          color: #f12c4c;
+        }
+        .black {
+          background-color: #2e3c49;
+          color: white;
         }
       }
     }
 
     canvas {
-      height: 100px;
-      width: 200px;
+      height: 200px;
+      width: 580px;
+      border-radius: 10px;
       background-color: black;
     }
   }
+
   .tables {
     display: flex;
     gap: 20px;
@@ -30,9 +60,9 @@
       transition: all 1s ease;
       border-radius: 8px;
       padding: 10px;
-      // box-shadow: 0 5px 20px 0 rgba(6, 10, 14, 0.25);
-      // background-color: #1a242d;
-      // color: white;
+      box-shadow: 0px 0px 10px #13171b;
+      background-color: #1a242d;
+      color: white;
 
       tr {
         td,

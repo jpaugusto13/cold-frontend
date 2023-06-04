@@ -5,6 +5,8 @@ import { Login } from '../pages/Authentication/Login/Login';
 import { Double } from '../pages/Home/components/Games/Double';
 import { MainContent } from '../pages/Home/components/MainContent/MainContent';
 import { AuthProvider } from '../contexts/AuthContext';
+import { Authentication } from '../pages/Authentication/Authentication';
+
 export function AppRoutes() {
   return (
     <BrowserRouter>
@@ -14,8 +16,11 @@ export function AppRoutes() {
             <Route path="" element={<MainContent />} />
             <Route path="double" element={<Double />} />
           </Route>
-          <Route path="/cadastro" element={<Register />} />
-          <Route path="/entrar" element={<Login />} />
+
+          <Route path="/autenticacao" element={<Authentication />}>
+            <Route path="cadastrar" element={<Register />} />
+            <Route path="entrar" element={<Login />} />
+          </Route>
         </Routes>
       </AuthProvider>
     </BrowserRouter>

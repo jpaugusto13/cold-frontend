@@ -1,7 +1,13 @@
+@font-face {
+  font-family: 'SofiaPro';
+  src: url('../../public/fonts/SofiaPro/Sofia\ Pro\ Regular\ Az.woff');
+}
+
 * {
   padding: 0;
+  margin: 0;
   box-sizing: border-box;
-  font-family: sans-serif;
+  font-family: 'SofiaPro', sans-serif;
 }
 
 button {
