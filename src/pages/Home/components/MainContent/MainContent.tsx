@@ -1,26 +1,31 @@
-import AliceCarousel from 'react-alice-carousel';
-import 'react-alice-carousel/lib/alice-carousel.css';
+import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
+
+import './main.scss';
 
 export function MainContent() {
-
-  const items = [
-    <img src="miniplaceholder.svg" className="w-48" alt="" />,
-    <img src="miniplaceholder.svg" className="w-48" alt="" />,
-    <img src="miniplaceholder.svg" className="w-48" alt="" />,
-    <img src="miniplaceholder.svg" className="w-48" alt="" />,
-  ];
   return (
-    <>
-      <div>
-        <AliceCarousel
+    <div className="main">
+      <div style={{ width: '600px', height: '100px' }}>
+        <Carousel
+          infiniteLoop
           autoPlay
-          autoPlayInterval={2000}
-          disableButtonsControls
-          infinite
-          mouseTracking
-          items={items}
-        />
+          showArrows={false}
+          showThumbs={false}
+          showStatus={false}
+          interval={1500}
+        >
+          <div>
+            <img src="image4.jpg" width={100} height={300} />
+          </div>
+          <div>
+            <img src="image2.jpg" width={100} height={300} />
+          </div>
+          <div>
+            <img src="image3.jpg" width={100} height={300} />
+          </div>
+        </Carousel>
       </div>
-    </>
+    </div>
   );
 }

@@ -11,9 +11,9 @@ export function NavBar() {
   const { money } = user;
   return (
     <nav className="navbar">
-      <Link to="/">
+      {/* <Link to="/">
         <img alt="logo" className="logo" src="imgs/logo.png" />
-      </Link>
+      </Link> */}
       <button className={collapsed ? 'toggle-sidebar' : 'toggle-sidebar active' }
         onClick={() => {
           collapseSidebar(!collapsed);
