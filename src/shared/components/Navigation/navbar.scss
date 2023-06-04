@@ -3,12 +3,35 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #172635;
+  background-color: #0f1923;
   border-bottom: 1px solid #3e4246;
   height: 12vh;
-  
+
+  .toggle-sidebar {
+    background-color: transparent;
+    border: 0px;
+
+    div {
+      width: 32px;
+      height: 2px;
+      background-color: #fff;
+      margin: 8px;
+      transition: 0.3s;
+    }
+  }
+  .active {
+    .line1 {
+      transform: rotate(-45deg) translate(-8px, 8px);
+    }
+    .line2 {
+      opacity: 0;
+    }
+    .line3 {
+      transform: rotate(45deg) translate(-5px, -7px);
+    }
+  }
+
   .logo {
-    margin-left: 50px;
     width: 120px;
   }
 
