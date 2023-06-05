@@ -1,28 +1,36 @@
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../../hooks/useAuth';
 import { useProSidebar } from 'react-pro-sidebar';
-
+import { useLocation } from 'react-router-dom';
 import './navbar.scss';
 
 export function NavBar() {
+  const { pathname } = useLocation();
+
   const { collapseSidebar, collapsed } = useProSidebar();
 
   const { isLoggedIn, logout, user } = useAuth();
   const { money } = user;
   return (
     <nav className="navbar">
-      {/* <Link to="/">
-        <img alt="logo" className="logo" src="imgs/logo.png" />
-      </Link> */}
-      <button className={collapsed ? 'toggle-sidebar' : 'toggle-sidebar active' }
-        onClick={() => {
-          collapseSidebar(!collapsed);
-        }}
-      >
-        <div className='line1'></div>
-        <div className='line2'></div>
-        <div className='line3'></div>
-      </button>
+      {pathname !== '/autenticacao/entrar' &&
+      pathname !== '/autenticacao/cadastrar' ? (
+        <button
+          className={collapsed ? 'toggle-sidebar' : 'toggle-sidebar active'}
+          onClick={() => {
+            collapseSidebar(!collapsed);
+          }}
+        >
+          <div className="line1"></div>
+          <div className="line2"></div>
+          <div className="line3"></div>
+        </button>
+      ) : (
+        <Link to="/">
+          <img alt="logo" className="logo" src="imgs/logo.png" />
+        </Link>
+      )}
+
       {!isLoggedIn ? (
         <>
           <div>
