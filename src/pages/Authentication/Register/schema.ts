@@ -2,7 +2,13 @@ import * as yup from 'yup';
 
 const schema = yup
   .object({
-    name: yup.string().required('O campo nome é obrigatório!'),
+    firstName: yup.string().required('O campo nome é obrigatório!'),
+    lastName: yup.string().required('O campo sobrenome é obrigatório!'),
+    cpf: yup.string().required('O campo de CPF é obrigatório'),
+    birthday: yup
+      .date()
+      .typeError('O campo data está inválido')
+      .required('O campo de CPF é obrigatório'),
     email: yup
       .string()
       .email('O campo email está inválido')

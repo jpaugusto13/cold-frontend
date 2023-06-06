@@ -13,6 +13,7 @@
     .title {
       display: flex;
       gap: 10px;
+      margin-bottom: 6vh;
 
       h1 {
         font-weight: bold;
@@ -28,7 +29,7 @@
 
     form {
       display: flex;
-      gap: 15px;
+      gap: 25px;
       flex-direction: column;
 
       .content-field {
@@ -89,8 +90,10 @@
 @keyframes animation {
   from {
     height: 0px;
+    padding: 0px;
   }
   to {
     height: 15px;
+    padding: 5px;
   }
 }

@@ -54,7 +54,7 @@ export function Login() {
               Cancelar
             </button>
             <button className="submit" type="submit">
-              Cadastrar
+              Entrar
             </button>
           </div>
         </form>
