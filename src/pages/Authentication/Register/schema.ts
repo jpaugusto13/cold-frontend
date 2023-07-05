@@ -5,6 +5,7 @@ const schema = yup
     firstName: yup.string().required('O campo nome é obrigatório!'),
     lastName: yup.string().required('O campo sobrenome é obrigatório!'),
     cpf: yup.string().required('O campo de CPF é obrigatório'),
+    phone: yup.string().required('O campo de telfone é obrigatório'),
     birthday: yup
       .date()
       .typeError('O campo data está inválido')

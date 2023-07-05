@@ -45,7 +45,7 @@ export function NavBar() {
       ) : (
         <>
           <div>
-            <p>Seja bem vindo: {user.name}</p>
+            <p>Seja bem vindo: {user.firstName}</p>
             <p className="money">R$ {money.toFixed(2).replace('.', ',')}</p>
             <button
               className="deposit"

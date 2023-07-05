@@ -37,25 +37,28 @@ export function Login() {
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Input
-            type="text"
-            errors={errors?.email}
-            label="Email"
-            {...register('email')}
-          />
-          <Input
-            type="password"
-            errors={errors?.password}
-            label="Senha"
-            {...register('password')}
-          />
-          <div className="btn">
-            <button onClick={handleCancel} className="cancel" type="reset">
-              Cancelar
-            </button>
-            <button className="submit" type="submit">
-              Entrar
-            </button>
+          <div className="div-form">
+            <Input
+              type="text"
+              errors={errors?.email}
+              label="Email"
+              {...register('email')}
+            />
+            <Input
+              type="password"
+              errors={errors?.password}
+              label="Senha"
+              {...register('password')}
+            />
+
+            <div className="btn">
+              <button onClick={handleCancel} className="cancel" type="reset">
+                Cancelar
+              </button>
+              <button className="submit" type="submit">
+                Entrar
+              </button>
+            </div>
           </div>
         </form>
       </div>

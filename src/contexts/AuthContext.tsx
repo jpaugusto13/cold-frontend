@@ -1,12 +1,13 @@
 import { createContext, useState, useEffect, ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
-import api from '../services/api';
+import api from '../services/apiCore';
 import { FormDataLogin } from '../pages/Authentication/Login/Login';
 import { FormDataRegister } from '../pages/Authentication/Register/Register';
 import Swal from 'sweetalert2';
 
 interface User {
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   money: number;
 }
@@ -16,7 +17,8 @@ interface AuthContextData {
   user: User;
   signIn: ({ email, password }: FormDataLogin) => void;
   signUp: ({
-    name,
+    firstName,
+    lastName,
     email,
     password,
     confirmPassword,
@@ -31,7 +33,8 @@ interface AuthProviderProps {
 const key = 'token@COLD';
 
 const userDefault: User = {
-  name: 'Não logado',
+  firstName: 'Não logado',
+  lastName: '',
   email: '',
   money: 0,
 };
@@ -62,6 +65,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   }, [isLoggedIn]);
 
   const signUp = async (data: FormDataRegister) => {
+    console.log(data)
     Swal.fire({
       didOpen: () => {
         Swal.showLoading();
@@ -88,6 +92,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
         }
       });
   };
+
+  // Função de SignIn de usuário
   const signIn = async (data: FormDataLogin) => {
     Swal.fire({
       didOpen: () => {
@@ -125,6 +131,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       });
   };
 
+  // Função de logout de usuário
   const logout = () => {
     localStorage.removeItem(key);
     setUser(userDefault);

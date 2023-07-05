@@ -28,38 +28,40 @@
     }
 
     form {
-      display: flex;
-      gap: 25px;
-      flex-direction: column;
-
-      .content-field {
+      .div-form {
         display: flex;
+        gap: 25px;
         flex-direction: column;
-        gap: 3px;
-        color: white;
 
-        .content-field-error {
-          animation: animation 0.6s ease forwards;
-          color: #f12c4c;
-        }
-
-        .content-field-void {
-          animation: animation 0.6s ease reverse;
-        }
-
-        input {
-          padding: 5px;
+        .content-field {
+          display: flex;
+          flex-direction: column;
+          gap: 3px;
           color: white;
-          height: 40px;
-          min-width: 300px;
-          max-width: 500px;
-          width: 30vw;
-          background-color: transparent;
-          border: 0;
-          border: 1px solid #3e4246;
-          border-radius: 4px;
-          outline: none;
-          font-size: 16px;
+
+          .content-field-error {
+            animation: animation 0.6s ease forwards;
+            color: #f12c4c;
+          }
+
+          .content-field-void {
+            animation: animation 0.6s ease reverse;
+          }
+
+          input {
+            padding: 5px;
+            color: white;
+            height: 40px;
+            min-width: 300px;
+            max-width: 500px;
+            width: 30vw;
+            background-color: transparent;
+            border: 0;
+            border: 1px solid #3e4246;
+            border-radius: 4px;
+            outline: none;
+            font-size: 16px;
+          }
         }
       }
 

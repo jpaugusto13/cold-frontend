@@ -1,34 +1,23 @@
 import { Table } from './components/Table/Table';
 
 import './double.scss';
-import { useAuth } from '../../../../hooks/useAuth';
 
 export function Double() {
-  const { isLoggedIn } = useAuth();
-
-
-  function handleGame() {
-    if (!isLoggedIn) {
-      alert('Para jogar você precisa estar cadastrado');
-    } else {
-      alert('Jogo em manutenção');
-    }
-  }
-
   return (
-    <div id='double'>
+    <div id="double">
       <section className="dashboard">
         <aside>
           <form>
-            <div>
-              <input
-                type="number"
-                id="value-field"
-                placeholder="Quantia"
-              />
+            <div className="field-input">
+              <input type="number" id="value-field" placeholder="Quantia" />
+              <div className="emblem">
+                <p>R$</p>
+              </div>
             </div>
             <div>
-              <label>Selecione a cor</label>
+              <div className="label-btn">
+                <label htmlFor="btn">Selecione a cor</label>
+              </div>
               <div className="btn">
                 <button className="red" type="button">
                   x2
@@ -42,9 +31,9 @@ export function Double() {
               </div>
             </div>
 
-            <div>
-              <button onClick={handleGame} type="button">
-                Começar o jogo
+            <div className="btn-dashboard">
+              <button className="red" type="button">
+                Apostar
               </button>
             </div>
           </form>

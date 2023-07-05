@@ -7,7 +7,6 @@ import schema from './schema';
 import { Input } from '../../../shared/components/Input/Input';
 import { useAuth } from '../../../hooks/useAuth';
 import { useState } from 'react';
-import transitions from '@material-ui/core/styles/transitions';
 
 export type FormDataRegister = yup.InferType<typeof schema>;
 
@@ -43,7 +42,7 @@ export function Register() {
       response ? setStep(step) : undefined;
     }
     if (step === 3) {
-      const response = await trigger(['birthday', 'cpf']);
+      const response = await trigger(['birthday', 'phone', 'cpf']);
       response ? setStep(step) : undefined;
     }
   };
@@ -59,100 +58,112 @@ export function Register() {
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)}>
-          {step === 1 ? (
-            <>
-              <Input
-                type="text"
-                label="Nome"
-                errors={errors?.firstName}
-                {...register('firstName')}
-              />
-              <Input
-                type="text"
-                label="Sobrenome"
-                errors={errors?.lastName}
-                {...register('lastName')}
-              />
-              <Input
-                type="text"
-                label="Email"
-                errors={errors?.email}
-                {...register('email')}
-              />
-              <div className="btn">
-                <button onClick={handleCancel} className="cancel" type="reset">
-                  Cancelar
-                </button>
-                <button
-                  onClick={() => handleStep(2)}
-                  className="submit"
-                  type="button"
-                >
-                  Próximo
-                </button>
-              </div>
-            </>
-          ) : step === 2 ? (
-            <>
-              <Input
-                type="text"
-                label="CPF"
-                errors={errors?.cpf}
-                {...register('cpf')}
-              />
-              <Input
-                type="date"
-                label="Data de nascimento"
-                errors={errors?.birthday}
-                {...register('birthday')}
-              />
+          <div
+            className="div-form"
+            style={step === 1 ? { display: 'flex' } : { display: 'none' }}
+          >
+            <Input
+              type="text"
+              label="Nome"
+              errors={errors?.firstName}
+              {...register('firstName')}
+            />
+            <Input
+              type="text"
+              label="Sobrenome"
+              errors={errors?.lastName}
+              {...register('lastName')}
+            />
+            <Input
+              type="text"
+              label="Email"
+              errors={errors?.email}
+              {...register('email')}
+            />
+            <div className="btn">
+              <button onClick={handleCancel} className="cancel" type="reset">
+                Cancelar
+              </button>
+              <button
+                onClick={() => handleStep(2)}
+                className="submit"
+                type="button"
+              >
+                Próximo
+              </button>
+            </div>
+          </div>
 
-              <div className="btn">
-                <button
-                  onClick={() => handleStep(1)}
-                  className="cancel"
-                  type="button"
-                >
-                  Voltar
-                </button>
-                <button
-                  onClick={() => handleStep(3)}
-                  className="submit"
-                  type="button"
-                >
-                  Próximo
-                </button>
-              </div>
-            </>
-          ) : (
-            <>
-              <Input
-                type="password"
-                label="Senha"
-                errors={errors?.password}
-                {...register('password')}
-              />
-              <Input
-                type="password"
-                label="Confirmação de senha"
-                errors={errors?.confirmPassword}
-                {...register('confirmPassword')}
-              />
+          <div
+            className="div-form"
+            style={step === 2 ? { display: 'flex' } : { display: 'none' }}
+          >
+            <Input
+              type="text"
+              label="CPF"
+              errors={errors?.cpf}
+              {...register('cpf')}
+            />
+            <Input
+              type="text"
+              label="Telefone"
+              errors={errors?.phone}
+              {...register('phone')}
+            />
+            <Input
+              type="date"
+              label="Data de nascimento"
+              errors={errors?.birthday}
+              {...register('birthday')}
+            />
 
-              <div className="btn">
-                <button
-                  onClick={() => handleStep(2)}
-                  className="cancel"
-                  type="button"
-                >
-                  Voltar
-                </button>
-                <button className="submit" type="submit">
-                  Cadastrar
-                </button>
-              </div>
-            </>
-          )}
+            <div className="btn">
+              <button
+                onClick={() => handleStep(1)}
+                className="cancel"
+                type="button"
+              >
+                Voltar
+              </button>
+              <button
+                onClick={() => handleStep(3)}
+                className="submit"
+                type="button"
+              >
+                Próximo
+              </button>
+            </div>
+          </div>
+          <div
+            className="div-form"
+            style={step === 3 ? { display: 'flex' } : { display: 'none' }}
+          >
+            <Input
+              type="password"
+              label="Senha"
+              errors={errors?.password}
+              {...register('password')}
+            />
+            <Input
+              type="password"
+              label="Confirmação de senha"
+              errors={errors?.confirmPassword}
+              {...register('confirmPassword')}
+            />
+
+            <div className="btn">
+              <button
+                onClick={() => handleStep(2)}
+                className="cancel"
+                type="button"
+              >
+                Voltar
+              </button>
+              <button className="submit" type="submit">
+                Cadastrar
+              </button>
+            </div>
+          </div>
         </form>
       </div>
     </div>
