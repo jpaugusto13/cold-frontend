@@ -8,9 +8,9 @@ export function NavBar() {
   const { pathname } = useLocation();
 
   const { collapseSidebar, collapsed } = useProSidebar();
-
   const { isLoggedIn, logout, user } = useAuth();
-  const { money } = user;
+  const { money, firstName } = user;
+
   return (
     <nav className="navbar">
       {pathname !== '/autenticacao/entrar' &&
@@ -45,7 +45,7 @@ export function NavBar() {
       ) : (
         <>
           <div>
-            <p>Seja bem vindo: {user.firstName}</p>
+            <p style={{ color: 'gold' }}>Seja bem vindo: {firstName}</p>
             <p className="money">R$ {money.toFixed(2).replace('.', ',')}</p>
             <button
               className="deposit"

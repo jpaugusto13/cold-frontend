@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect, ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
-import api from '../services/apiCore';
+import api from '../services/api';
 import { FormDataLogin } from '../pages/Authentication/Login/Login';
 import { FormDataRegister } from '../pages/Authentication/Register/Register';
 import Swal from 'sweetalert2';
@@ -58,6 +58,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
           })
           .then(({ data }) => data);
         setIsLoggedIn(true);
+        console.log(user)
         setUser(user);
       };
       dataUse();
@@ -65,7 +66,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
   }, [isLoggedIn]);
 
   const signUp = async (data: FormDataRegister) => {
-    console.log(data)
     Swal.fire({
       didOpen: () => {
         Swal.showLoading();

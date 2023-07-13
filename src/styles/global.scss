@@ -21,3 +21,15 @@ ul {
 a {
   text-decoration: none;
 }
+
+::-webkit-scrollbar {
+  width: 12px; /* width of the entire scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(68, 68, 68)
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #646b79;
+}

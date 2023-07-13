@@ -18,17 +18,29 @@
     gap: 10px;
 
     form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
       .field-input {
         position: relative;
-
-        input,
-        input[type='number']::-webkit-inner-spin-button {
+        width: 190px;
+        display: flex;
+        align-items: center;
+        
+        input {
           background-color: #131521;
           border: none;
           border-radius: 3px;
           padding: 15px;
           color: #fff;
           outline: none;
+          width: 100vw;
+          font-size: 1em;
+        }
+
+        input[type='number']::-webkit-inner-spin-button {
           -webkit-appearance: none;
         }
 
@@ -37,6 +49,8 @@
           align-items: center;
           position: absolute;
           top: 0;
+          bottom: 0;
+          right: 0;
 
           p {
             color: #646b79;
@@ -68,12 +82,18 @@
           background-color: #f12c4c;
           color: white;
         }
+
         .white {
           color: #f12c4c;
         }
+
         .black {
           background-color: #2e3c49;
           color: white;
+        }
+
+        .active {
+          outline: 10px black auto;
         }
       }
 
