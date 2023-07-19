@@ -11,7 +11,7 @@ type userProps = {
   bet: number;
 };
 export function Table({ filter, multiplier }: TableProps) {
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState<userProps[]>([]);
 
   useEffect(() => {
     const getBets = async () => {
@@ -22,7 +22,9 @@ export function Table({ filter, multiplier }: TableProps) {
           },
         })
         .then((res) => {
-          setUsers(res.data);
+          if (Array.isArray(res.data)) {
+            setUsers(res.data);
+          }
         });
     };
     getBets();
@@ -47,7 +49,10 @@ export function Table({ filter, multiplier }: TableProps) {
               <p>Total de apostas</p>
             </td>
             <td>
-              <h1>R$ {<NumberCounter start={0} end={amount} duration={2000}/>}</h1>
+              <h1>
+                R$
+                {<NumberCounter start={0} end={amount} duration={2000} />}
+              </h1>
             </td>
           </tr>
           <tr className="users">
@@ -59,7 +64,9 @@ export function Table({ filter, multiplier }: TableProps) {
           {users.map(({ name, bet }: userProps) => (
             <tr key={name + bet}>
               <td>{name}</td>
-              <td>R$ {bet.toFixed(2).replace('.', ',')}</td>
+              <td>
+                R$ {bet != undefined ? bet.toFixed(2).replace('.', ',') : 0}
+              </td>
             </tr>
           ))}
         </tbody>

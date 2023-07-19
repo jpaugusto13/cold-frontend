@@ -22,6 +22,6 @@ export function NumberCounter({ start, end, duration }: NumberCounterProps) {
       clearInterval(interval);
     };
   }, [start, end, duration]);
-
+  if (current == undefined) setCurrent(0);
   return <span>{current.toFixed(2).replace('.', ',')}</span>;
 }
