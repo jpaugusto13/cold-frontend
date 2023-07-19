@@ -6,31 +6,36 @@ interface TableProps {
   filter: string;
   multiplier: number;
 }
-type userProps = {
+
+type UserProps = {
   name: string;
   bet: number;
 };
+
 export function Table({ filter, multiplier }: TableProps) {
-  const [users, setUsers] = useState<userProps[]>([]);
+  const [users, setUsers] = useState<UserProps[]>([]);
 
   useEffect(() => {
     const getBets = async () => {
-      await api
-        .get('/gameDouble/getBet', {
+      try {
+        const response = await api.get('/gameDouble/getBet', {
           params: {
             filter: filter,
           },
-        })
-        .then((res) => {
-          if (Array.isArray(res.data)) {
-            setUsers(res.data);
-          }
         });
-    };
-    getBets();
-  });
 
-  const amount = users.reduce((acumulador, { bet }) => acumulador + bet, 0);
+        if (Array.isArray(response.data)) {
+          setUsers(response.data);
+        }
+      } catch (error) {
+        console.error('Erro ao obter as apostas:', error);
+      }
+    };
+
+    getBets();
+  }, [filter]);
+
+  const amount = users.reduce((accumulator, { bet }) => accumulator + (bet || 0), 0);
 
   return (
     <div>
@@ -50,7 +55,7 @@ export function Table({ filter, multiplier }: TableProps) {
             </td>
             <td>
               <h1>
-                R$ {<NumberCounter start={0} end={amount} duration={2000} />}
+                R$ <NumberCounter start={0} end={amount} duration={2000} />
               </h1>
             </td>
           </tr>
@@ -60,11 +65,11 @@ export function Table({ filter, multiplier }: TableProps) {
           </tr>
         </thead>
         <tbody>
-          {users.map(({ name, bet }: userProps) => (
-            <tr key={name + bet}>
+          {users.map(({ name, bet }: UserProps) => (
+            <tr key={name + (bet ?? 0)}>
               <td>{name}</td>
               <td>
-                R$ {bet != undefined ? bet.toFixed(2).replace('.', ',') : 0}
+                R$ {bet !== undefined ? bet.toFixed(2).replace('.', ',') : '0'}
               </td>
             </tr>
           ))}
