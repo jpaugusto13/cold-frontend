@@ -50,8 +50,7 @@ export function Table({ filter, multiplier }: TableProps) {
             </td>
             <td>
               <h1>
-                R$
-                {<NumberCounter start={0} end={amount} duration={2000} />}
+                R$ {<NumberCounter start={0} end={amount} duration={2000} />}
               </h1>
             </td>
           </tr>
