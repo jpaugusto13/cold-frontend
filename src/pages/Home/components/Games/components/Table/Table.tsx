@@ -33,7 +33,7 @@ export function Table({ filter, multiplier }: TableProps) {
     };
 
     getBets();
-    const interval = setInterval(getBets, 1);
+    const interval = setInterval(getBets, 50);
     return () => {
       clearInterval(interval);
     };
