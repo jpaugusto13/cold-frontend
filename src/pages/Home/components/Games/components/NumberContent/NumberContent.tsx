@@ -7,13 +7,13 @@ interface NumberCounterProps {
 }
 
 export function NumberCounter({ start, end, duration }: NumberCounterProps) {
-  const [current, setCurrent] = useState(start);
+  const [current, setCurrent] = useState<number | undefined>(undefined);
 
   useEffect(() => {
     const increment = Math.ceil((end - start) / (duration / 16));
     const interval = setInterval(() => {
       setCurrent((prevCurrent) => {
-        const newCurrent = prevCurrent + increment;
+        const newCurrent = prevCurrent !== undefined ? prevCurrent + increment : start;
         return newCurrent >= end ? end : newCurrent;
       });
     }, 16);
@@ -22,6 +22,6 @@ export function NumberCounter({ start, end, duration }: NumberCounterProps) {
       clearInterval(interval);
     };
   }, [start, end, duration]);
-  if (current == undefined) setCurrent(0);
-  return <span>{current.toFixed(2).replace('.', ',')}</span>;
+
+  return <span>{current !== undefined ? current.toFixed(2).replace('.', ',') : ''}</span>;
 }
