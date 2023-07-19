@@ -1,30 +1,68 @@
+import { useEffect, useState } from 'react';
+import api from '../../../../../../services/api';
+import { NumberCounter } from '../NumberContent/NumberContent';
+
 interface TableProps {
   filter: string;
   multiplier: number;
 }
-
+type userProps = {
+  name: string;
+  bet: number;
+};
 export function Table({ filter, multiplier }: TableProps) {
-  const amount = Number(0);
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    const getBets = async () => {
+      await api
+        .get('/gameDouble/getBet', {
+          params: {
+            filter: filter,
+          },
+        })
+        .then((res) => {
+          setUsers(res.data);
+        });
+    };
+    getBets();
+  });
+
+  const amount = users.reduce((acumulador, { bet }) => acumulador + bet, 0);
+
   return (
     <div>
       <table>
         <thead>
           <tr>
-            <td><h1>Vitória {multiplier}x</h1></td>
+            <td>
+              <h1>Vitória {multiplier}x</h1>
+            </td>
             <th>
               <img alt="icon" src={`/svg/games/double/${filter}Card.svg`} />
             </th>
           </tr>
           <tr>
-            <td>Total de apostas</td>
-            <td><h1>R$ {amount.toFixed(2).replace('.', ',')}</h1></td>
+            <td>
+              <p>Total de apostas</p>
+            </td>
+            <td>
+              <h1>R$ {<NumberCounter start={0} end={amount} duration={2000}/>}</h1>
+            </td>
           </tr>
-          <tr>
+          <tr className="users">
             <td>Usuário</td>
             <td>Quantia</td>
           </tr>
         </thead>
-        <tbody></tbody>
+        <tbody>
+          {users.map(({ name, bet }: userProps) => (
+            <tr key={name + bet}>
+              <td>{name}</td>
+              <td>R$ {bet.toFixed(2).replace('.', ',')}</td>
+            </tr>
+          ))}
+        </tbody>
       </table>
     </div>
   );

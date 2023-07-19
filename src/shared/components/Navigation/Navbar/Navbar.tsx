@@ -1,15 +1,26 @@
 import { Link } from 'react-router-dom';
-import { useAuth } from '../../../hooks/useAuth';
+import { useAuth } from '../../../../hooks/useAuth';
 import { useProSidebar } from 'react-pro-sidebar';
 import { useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import './navbar.scss';
+import api from '../../../../services/api';
 
 export function NavBar() {
   const { pathname } = useLocation();
 
   const { collapseSidebar, collapsed } = useProSidebar();
   const { isLoggedIn, logout, user } = useAuth();
-  const { money, firstName } = user;
+  const { firstName, money } = user;
+  const [moneyUser, setMoneyUser] = useState(money);
+
+  useEffect(() => {
+    setMoneyUser(money);
+  }, [money]);
+
+  const deleteAll = async () => {
+    await api.delete('/gameDouble/deleteBet');
+  };
 
   return (
     <nav className="navbar">
@@ -45,8 +56,13 @@ export function NavBar() {
       ) : (
         <>
           <div>
+            {user.email == 'pedroaugusto131204@gmail.com' ? (
+              <button onClick={deleteAll} >Apagar banco de dados</button>
+            ) : (
+              <></>
+            )}
             <p style={{ color: 'gold' }}>Seja bem vindo: {firstName}</p>
-            <p className="money">R$ {money.toFixed(2).replace('.', ',')}</p>
+            <p className="money">R$ {moneyUser.toFixed(2).replace('.', ',')}</p>
             <button
               className="deposit"
               onClick={() => alert('Função ainda não desenvolvida')}

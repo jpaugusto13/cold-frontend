@@ -58,12 +58,11 @@ export function AuthProvider({ children }: AuthProviderProps) {
           })
           .then(({ data }) => data);
         setIsLoggedIn(true);
-        console.log(user)
         setUser(user);
       };
       dataUse();
     }
-  }, [isLoggedIn]);
+  });
 
   const signUp = async (data: FormDataRegister) => {
     Swal.fire({

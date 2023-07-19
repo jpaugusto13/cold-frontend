@@ -61,7 +61,11 @@ export function SidebarTeste() {
           >
             Double
           </MenuItem>
-          <MenuItem component={<Link to="/double" />} icon={<CellTowerIcon />}>
+          <MenuItem
+            disabled
+            component={<Link to="/double" />}
+            icon={<CellTowerIcon />}
+          >
             Tower
           </MenuItem>
         </SubMenu>

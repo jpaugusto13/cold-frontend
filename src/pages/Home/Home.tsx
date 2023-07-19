@@ -1,9 +1,8 @@
 import { Outlet } from 'react-router-dom';
 
-import { SidebarTeste } from '../../shared/components/Sidebar/Sidebar';
-import { NavBar } from '../../shared/components/Navigation/Navbar';
+import { SidebarTeste } from '../../shared/components/Navigation/Sidebar/Sidebar';
+import { NavBar } from '../../shared/components/Navigation/Navbar/Navbar';
 import './home.scss';
-
 
 export function Home() {
   return (

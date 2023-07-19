@@ -44,7 +44,6 @@ export function Double() {
                       color: color,
                       name: firstName,
                     })
-                    .then((res) => console.log(res.data));
                 };
 
                 handleBet(money);
@@ -116,7 +115,7 @@ export function Double() {
 
             <div className="btn-dashboard">
               <button onClick={handleClick} className="red" type="button">
-                Apostar
+                Começar o jogo
               </button>
             </div>
           </form>
@@ -125,9 +124,9 @@ export function Double() {
       </section>
 
       <section className="tables">
-        <Table filter="vermelho" multiplier={2} />
-        <Table filter="branco" multiplier={12} />
-        <Table filter="preto" multiplier={2} />
+        <Table filter="red" multiplier={2} />
+        <Table filter="white" multiplier={12} />
+        <Table filter="black" multiplier={2} />
       </section>
     </div>
   );
