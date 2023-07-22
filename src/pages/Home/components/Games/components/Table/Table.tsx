@@ -33,9 +33,16 @@ export function Table({ filter, multiplier }: TableProps) {
     };
 
     getBets();
+    const interval = setInterval(getBets, 50);
+    return () => {
+      clearInterval(interval);
+    };
   }, [filter]);
 
-  const amount = users.reduce((accumulator, { bet }) => accumulator + (bet || 0), 0);
+  const amount = users.reduce(
+    (accumulator, { bet }) => accumulator + (bet || 0),
+    0
+  );
 
   return (
     <div>

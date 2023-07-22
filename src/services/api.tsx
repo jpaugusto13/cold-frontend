@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://cold-frontend.vercel.app',
+  baseURL: 'https://cold-backend.vercel.app',
 });
-
 export default api;
