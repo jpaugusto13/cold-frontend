@@ -13,7 +13,8 @@ export function NumberCounter({ start, end, duration }: NumberCounterProps) {
     const increment = Math.ceil((end - start) / (duration / 16));
     const interval = setInterval(() => {
       setCurrent((prevCurrent) => {
-        const newCurrent = prevCurrent !== undefined ? prevCurrent + increment : start;
+        const newCurrent =
+          prevCurrent !== undefined ? prevCurrent + increment : start;
         return newCurrent >= end ? end : newCurrent;
       });
     }, 16);
@@ -22,6 +23,7 @@ export function NumberCounter({ start, end, duration }: NumberCounterProps) {
       clearInterval(interval);
     };
   }, [start, end, duration]);
-
-  return <span>{current !== undefined ? current.toFixed(2).replace('.', ',') : ''}</span>;
+  return (
+    <span>{current !== undefined ? current.toLocaleString('pt-BR') : ''}</span>
+  );
 }
